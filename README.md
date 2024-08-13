@@ -1,43 +1,36 @@
+<!--
+ * @Author: kraken8081 202024@cumtb.edu.cn
+ * @Date: 2024-08-05 14:37:59
+ * @LastEditors: kraken8081 202024@cumtb.edu.cn
+ * @LastEditTime: 2024-08-13 11:22:30
+ * @FilePath: /GitHub/ai_assistant/README.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # 端到端语音交互AI法律助手
 - ## 环境安装
 
-    操作系统：Ubuntu22.04
-    
+
     python版本：Python 3.8.19
     ```shell
-    conda create -n cosyvoice python=3.8 -y
-    conda activate cosyvoice
-    pip install  pynini==2.1.5
-    pip install dashscope
-    apt update
-    apt-get install sox libsox-dev
-    pip install funasr
-    pip install dashscope
-    apt install ffmpeg
+    conda create -n ai_assistant python=3.8 -y
 
-    # 配置SenseVoice语音识别
-    git clone https://github.com/FunAudioLLM/SenseVoice.git
-    cd SenseVoice
     pip install -r requirements.txt 
 
-    # 配置CosyVoice语音合成
-    git clone https://github.com/FunAudioLLM/SenseVoice.git
-    cd 配置CosyVoice
-    pip install -r requirements.txt 
+    # 安装ollama，以Linux系统为例
+    # 其他系统安装请参考 https://github.com/ollama/ollama/tree/main
+    curl -fsSL https://ollama.com/install.sh | sh
+    # 启动ollama服务
+    ollama serve
+
+    # 下载llm模型
+    ollama pull qwen:0.5B
+
+    # 下载cosyvoice和sensevoice对应模型到 pretrained_models
+    # 可使用download.ipynb
 
     # 启动服务
-    cd CosyVoice
-    export PYTHONPATH=third_party/Matcha-TTS
-    python AI-assitantbyTeachLuo.py
+    python main.py
+    
+
     ```
 
-### 模型下载
-./CosyVoice/download.py
-```python
-from modelscope import snapshot_download
-#snapshot_download('iic/CosyVoice-300M', local_dir='/root/autodl-tmp/pretrained_models/CosyVoice-300M')
-snapshot_download('iic/SenseVoiceSmall', local_dir='/root/autodl-tmp/pretrained_models')
-
-```
-- ## 交互对话
-<div align="center"><img src="./image/img1.png" width="px"></div>
